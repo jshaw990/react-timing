@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { fetchData } from '../data/fetchData'
+import { fetchData } from '../services/fetchData'
 
 function Display() {
     const [ data, setData ] = useState({
