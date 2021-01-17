@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { addState } from '../../redux/actions'
 
-import { fetchData } from '../services/fetchData'
+import { fetchRaceData } from '../../services/fetchRaceData'
+
+import './display.css'
+
+import chevy from '../../assets/chevy-logo.png'
+import ford from '../../assets/ford-logo.png'
+import toyota from '../../assets/toyota-logo.png'
 
 function Display() {
     const [ data, setData ] = useState({
@@ -10,7 +18,7 @@ function Display() {
 
     useEffect(() => {
         let mounted = true 
-        fetchData() 
+        fetchRaceData() 
             .then(items => {
                 if (mounted) {
                     setData({
@@ -32,11 +40,16 @@ function Display() {
 
         const displayResult = raceResults.map((state, index) =>
             <li key={index} className='driver'>
-                <div className='driver_info'>
-                    <span className='driver_name'>{state.Name} </span>
-                    <span className='driver_number'>#{state.Number} </span>
-                    <span className='driver_manu'>- {state.Manufacturer}</span>
-                </div>
+                <span className='driver_position'>{index + 1}</span>
+                <span className='driver_name'>{state.Name} </span>
+                <span className='driver_number'>#{state.Number} </span>
+                {state.Manufacturer === 'Toyota' &&
+                    <img src={toyota} className='manu_logo' alt='toyota'/> 
+                } {state.Manufacturer === 'Chevrolet' &&
+                    <img src={chevy} className='manu_logo' alt='chevy'/> 
+                } {state.Manufacturer === 'Ford' &&
+                    <img src={ford} className='manu_logo' alt='ford'/> 
+                }
             </li>
         )
         const raceOver = data.data.Race.IsOver
@@ -49,9 +62,9 @@ function Display() {
                     )}
                     <h1>{data.data.Race.SeriesName} {data.data.Race.Name}</h1>
                     <div>{data.data.Race.DateTime}</div>
-                    <ol>
-                    {displayResult}
-                    </ol>
+                    <ul className='race_results'>
+                        {displayResult}
+                    </ul>
                 </div>
             )
     } else {
@@ -62,4 +75,8 @@ function Display() {
 
 }
 
-export default Display
+const mapStateToProps = state => {
+    return 
+}
+
+export default connect(mapStateToProps, { addState })(Display)

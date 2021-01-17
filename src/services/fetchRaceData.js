@@ -1,6 +1,8 @@
+// Fetch Individual Race Data from sportsdata.io
+
 import env from 'react-dotenv'
 
-export function fetchData() {
+export function fetchRaceData() {
     const API_KEY = env.API_KEY
     const URL = 'https://api.sportsdata.io/nascar/v2/json/raceresult/580?key=' + API_KEY
     
@@ -9,5 +11,3 @@ export function fetchData() {
         .then(data => data.json())
         .catch(console.log('API LOADING ERROR'))
 }
-
-//export default FetchData

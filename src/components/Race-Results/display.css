@@ -1,0 +1,39 @@
+.race_results {
+    list-style-type: none;
+    width: 350px;
+    margin: 0 auto;
+}
+
+.driver {
+    padding: 10px;
+    height: 48px;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin: 5px 0;
+    background-color: lightgray;
+}
+
+.driver_position {
+    font-size: 20px;
+    padding: 10px 5px;
+    position: relative;
+}
+
+.driver_name {
+    font-size: 110%;
+    padding: 10px 5px;
+    min-width: 160px;
+    max-width: 160px;
+    position: relative;
+}
+
+.driver_number {
+    padding: 10px 5px;
+    position: relative;
+}
+
+.manu_logo {
+    max-width: 50px;
+    padding: 10px 5px;
+    position: relative;
+}
